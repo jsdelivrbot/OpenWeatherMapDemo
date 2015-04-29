@@ -1,0 +1,9 @@
+<h1>Hello!</h1>
+
+<label>Please enter a valid U.S. zip code:</label>
+<input type="text" ng-model="home.zipCode" />
+<button ng-click="home.zipCodeChanged()">Submit</button>
+
+<div ui-grid="{data: home.myData}" class="grid"></div>
+
+<h1>Debug Dump: {{home.fullWeatherDisplay}}!</h1>
