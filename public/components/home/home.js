@@ -46,3 +46,7 @@ angular.module('MyApp.home', ['ui.grid', 'home.service'])
 
     that.zipCodeChanged();
   }]);
+
+// TODO:
+// 1. Use the correct API from their test document
+// 2. Write a unit test for this component, mostly the grid
