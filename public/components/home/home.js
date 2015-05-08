@@ -24,25 +24,25 @@ angular.module('MyApp.home', ['ui.grid', 'home.service'])
   	that.zipCode = '42066';	// default to my home :)
 
   	that.zipCodeChanged = function() {
-		var weatherServiceResult = WeatherData().$get(that.zipCode + ',us')
-		.success(function(wsResult) {
-			that.fullWeatherDisplay = wsResult;
-			
-		    that.myData =[
-				{ "name": "Longitude", "value": wsResult.coord.lon },
-				{ "name": "Latitude", "value": wsResult.coord.lat },
-				{ "name": "Temperature", "value": wsResult.main.temp },
-				{ "name": "Humidity", "value": wsResult.main.humidity }
-			];
-		});
+  		var weatherServiceResult = WeatherData().$get(that.zipCode + ',us')
+  		.success(function(wsResult) {
+  			that.fullWeatherDisplay = wsResult;
+  			
+  		    that.myData =[
+  				{ "name": "Longitude", "value": wsResult.coord.lon },
+  				{ "name": "Latitude", "value": wsResult.coord.lat },
+  				{ "name": "Temperature", "value": wsResult.main.temp },
+  				{ "name": "Humidity", "value": wsResult.main.humidity }
+  			];
+  		});
   	};
 
-	this.gridOptions = {
-        enableSorting: true,
-        columnDefs: [
-          { name:'name', field: 'name' },
-          { name:'value', field: 'value' }
-        ]};
+	  this.gridOptions = {
+      enableSorting: true,
+      columnDefs: [
+        { name:'name', field: 'name' },
+        { name:'value', field: 'value' }
+      ]};
 
     that.zipCodeChanged();
   }]);
