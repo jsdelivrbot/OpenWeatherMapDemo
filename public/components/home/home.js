@@ -50,3 +50,37 @@ angular.module('MyApp.home', ['ui.grid', 'home.service'])
 // TODO:
 // 1. Use the correct API from their test document
 // 2. Write a unit test for this component, mostly the grid
+
+// TODO: Complete this take home problem and send to Jim and company.
+// function(str, i) {
+//   // aaab, 2
+
+//   var breakEm = str.ToArray();
+//   var located = [];
+//   var locatedMultiple = [];
+
+//   breakEm.ForEach(function(be) {
+//     if (!located.contains(be)) {
+//       located.add(be);
+//     } else if (located.contains(be)) {
+//       var timesLocated = locatedMultiple.Where(x => x == be).Count();
+//       // 4
+//       if (timesLocated < i) {
+//         locatedMultiple.add(be);
+//       } // skip out otherwise
+//     }
+//   });
+
+//   // house cleaning...
+//   located.forEach(function(l) {
+//     var exist = locatedMultiple.SingleOrDefault(l);
+
+//     if (exist) {
+//       located.Remove(l);
+//     }
+//   });
+
+//   var result = locatedMultiple + located;
+
+//   return result;
+// }
