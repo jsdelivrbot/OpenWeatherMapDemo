@@ -69,10 +69,6 @@ angular.module('MyApp.home', ['ui.grid', 'home.service'])
   		});
   	};
 
-    // default to 5AMs first answer
-    // that.inputStr = "aaab";
-    // that.inputInt = 2;
-
     that.getRunsResult = function() {
       var runsResult = LocateRuns().getRunsResult(that.inputStr, that.inputInt);
 
