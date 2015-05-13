@@ -15,10 +15,42 @@ angular.module('home.service', [])
     }
 
     return weatherDataFactory;
+  }])
+  .factory('LocateRuns', [function() {
+    var locateRunsFactory = function() {
+        function LocateRuns() { }
+
+        LocateRuns.getRunsResult = function(inputStr, inputInt) {
+          var result = '';
+          var previousChar = '';
+          var currentCharCount = 0;
+
+          for (var i = 0; i < inputStr.length; i++) {
+            var currentChar = inputStr[i];
+
+            if (currentChar === previousChar) {
+              currentCharCount++;
+            } else {
+              currentCharCount = 0;
+              previousChar = currentChar;
+            }
+
+            if (currentCharCount < inputInt) {
+              result += currentChar;
+            }
+          };
+
+          return result;
+        };
+
+        return LocateRuns;
+    };
+
+    return locateRunsFactory;
   }]);
 
 angular.module('MyApp.home', ['ui.grid', 'home.service'])
-  .controller('HomeController', ['WeatherData', function (WeatherData) {
+  .controller('HomeController', ['WeatherData', 'LocateRuns', function (WeatherData, LocateRuns) {
   	var that = this;
 
   	that.zipCode = '42066';	// default to my home :)
@@ -37,6 +69,16 @@ angular.module('MyApp.home', ['ui.grid', 'home.service'])
   		});
   	};
 
+    // default to 5AMs first answer
+    // that.inputStr = "aaab";
+    // that.inputInt = 2;
+
+    that.getRunsResult = function() {
+      var runsResult = LocateRuns().getRunsResult(that.inputStr, that.inputInt);
+
+      return runsResult;
+    };
+
 	  this.gridOptions = {
       enableSorting: true,
       columnDefs: [
@@ -46,41 +88,3 @@ angular.module('MyApp.home', ['ui.grid', 'home.service'])
 
     that.zipCodeChanged();
   }]);
-
-// TODO:
-// 1. Use the correct API from their test document
-// 2. Write a unit test for this component, mostly the grid
-
-// TODO: Complete this take home problem and send to Jim and company.
-// function(str, i) {
-//   // aaab, 2
-
-//   var breakEm = str.ToArray();
-//   var located = [];
-//   var locatedMultiple = [];
-
-//   breakEm.ForEach(function(be) {
-//     if (!located.contains(be)) {
-//       located.add(be);
-//     } else if (located.contains(be)) {
-//       var timesLocated = locatedMultiple.Where(x => x == be).Count();
-//       // 4
-//       if (timesLocated < i) {
-//         locatedMultiple.add(be);
-//       } // skip out otherwise
-//     }
-//   });
-
-//   // house cleaning...
-//   located.forEach(function(l) {
-//     var exist = locatedMultiple.SingleOrDefault(l);
-
-//     if (exist) {
-//       located.Remove(l);
-//     }
-//   });
-
-//   var result = locatedMultiple + located;
-
-//   return result;
-// }
